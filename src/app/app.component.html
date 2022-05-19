@@ -3,7 +3,58 @@
       <h1>Daftar Mentor</h1>
   </div>
   <div class="content">
-      <div class="colom-50" *ngFor="let data of products">
+    <div class="row">
+      <div class="col-12">
+          <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-search"></i> Cari
+          </button>&nbsp;
+          <button type="button" class="btn btn-primary" [routerLink]="['/', 'user-management', 'menu', '0', 'data']">
+              <i class="fa fa-plus"></i> Tambah
+          </button>
+      </div>
+  </div>
+</form>
+
+<hr>
+
+    <table class="show-data">
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">User Type</th>
+        <th scope="col">Entity</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+        </tr>
+    </table>
+
+    <!-- <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">User Type</th>
+        <th scope="col">Entity</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td>
+          {{ data.first_name + data.last_name + data.civility }}
+        </td>
+        <td>{{data.company.user_type}}</td>
+        <td>{{data.company.name }}</td>
+        <td>{{data.user_status}}</td>
+        <td>
+            <a></a>
+            <a></a>
+            <a></a>
+        </td>
+      </tr>
+      </tbody>
+    </table> -->
+      <!-- <div class="colom-50" *ngFor="let data of products">
           <div class="card">
               <img src="{{data.image}}" alt="Image" style="width:100%">
               <div class="container">
@@ -11,6 +62,101 @@
                   <p>{{data.description}}</p> 
               </div>
           </div>
-      </div>
+      </div> -->
   </div>
 </div>
+<div class="modal-footer">
+  <ng-template #content let-closeModal="close" let-dismisModal="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Ganti Password</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="dismisModal('Cross click')"><i class="fa fa-close"></i></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formsunting" class="form theme-form">
+            <<form [formGroup]="formData" class="form theme-form">
+              <div class="row p-t-10">
+                  <div class="col col-xl-6 col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">NRK</label>
+                          <div class="col-sm-8">
+                              <input id="nrk" name="nrk" type="text" class="form-control" formControlName="nrk">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Sandi</label>
+                          <div class="col-sm-8" *ngIf="idData == 0">
+                              <input id="sandi" name="sandi" type="password" class="form-control" formControlName="sandi">
+                          </div>
+                          <div class="col-sm-8" *ngIf="idData > 0">
+                              <button type="button" class="btn btn-primary" (click)="openModal(content)">
+                                  <i class="fa fa-save"></i> Ubah Password
+                              </button>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">NIP Pengguna</label>
+                          <div class="col-sm-8">
+                              <input id="nip" name="nip" type="text" class="form-control" formControlName="nip">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Nama Pengguna</label>
+                          <div class="col-sm-8">
+                              <input id="nama" name="nama" type="text" class="form-control" formControlName="nama">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Jabatan Pengguna</label>
+                          <div class="col-sm-8">
+                              <input id="jabatan" name="jabatan" type="text" class="form-control" formControlName="jabatan">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">No HP</label>
+                          <div class="col-sm-8">
+                              <input id="nip" name="nip" type="text" class="form-control" formControlName="noHp">
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col col-xl-6 col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Email</label>
+                          <div class="col-sm-8">
+                              <input id="email" name="email" type="text" class="form-control" formControlName="email">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Kata Sandi</label>
+                          <div class="col-sm-8">
+                              <input id="sandi" name="sandi" type="text" class="form-control" formControlName="sandi"
+                              >
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Status Lock</label>
+                          <div class="col-sm-8">
+                              <select class="custom-select form-control" formControlName="kunci" style="width: 50%;">
+                                  <option [value]="true">Terkunci</option>
+                                  <option [value]="false">Terbuka</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Status Aktif</label>
+                          <div class="col-sm-8">
+                              <select class="custom-select form-control" formControlName="aktif"style="width: 50%;">
+                                  <option [value]="true">Aktif</option>
+                                  <option [value]="false">Nonaktif</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </form>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" href="/" style="background-color:black; color: white;"><i class="fa fa-arrow-left"></i> Batal</button>
+            <button type="button" class="btn btn-success" (click)="changePasswordAlert();closeModal('Save click')"><i class="fa fa-book-arrow-down"></i> Ganti Password</button>
+        </div>
+    </div>
